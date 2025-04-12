@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reaction Speed Test</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+    .container {
+      text-align: center;
+    }
+    #reactionButton {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: none;
+      background-color: red;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      margin: 20px;
+      transition: background-color 0.1s;
+      position: relative;
+    }
+    #reactionButton.waiting {
+      background-color: grey;
+    }
+    #reactionButton.active {
+      background-color: red;
+    }
+    #reactionButton.success {
+      background-color: green;
+    }
+    #resultText {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    #instructionText {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Reaction Speed Test</h1>
+    <div id="instructionText">Click the button to start the test!</div>
+    <div id="resultText"></div>
+    <button id="reactionButton">START</button>
+  </div>
+
+  <script>
+    const button = document.getElementById('reactionButton');
+    const resultText = document.getElementById('resultText');
+    const instructionText = document.getElementById('instructionText');
+    
+    let testStarted = false;
+    let reactionStartTime = 0;
+    let timeoutId = null;
+    
+    button.addEventListener('click', handleButtonClick);
+    
+    function handleButtonClick() {
+      if (!testStarted) {
+        // Start the test
+        startTest();
+      } else {
+        // User clicked during the test
+        if (button.classList.contains('active')) {
+          // The button was active, record reaction time
+          const reactionTime = Date.now() - reactionStartTime;
+          endTest(reactionTime);
+        } else if (button.classList.contains('waiting')) {
+          // User clicked too early
+          clearTimeout(timeoutId);
+          resultText.textContent = 'Too early! Click START to try again.';
+          resetTest();
+        }
+      }
+    }
+    
+    function startTest() {
+      testStarted = true;
+      button.textContent = 'Wait...';
+      button.classList.add('waiting');
+      instructionText.textContent = 'Wait for the button to turn RED, then click it as fast as you can!';
+      resultText.textContent = '';
+      
+      // Random delay between 4 and 7 seconds
+      const delay = Math.floor(Math.random() * 3000) + 4000;
+      
+      timeoutId = setTimeout(() => {
+        activateButton();
+      }, delay);
+    }
+    
+    function activateButton() {
+      button.classList.remove('waiting');
+      button.classList.add('active');
+      button.textContent = 'CLICK NOW!';
+      reactionStartTime = Date.now();
+    }
+    
+    function endTest(reactionTime) {
+      button.classList.remove('active');
+      button.classList.add('success');
+      button.textContent = 'DONE!';
+      resultText.textContent = `Your reaction time: ${reactionTime} ms`;
+      
+      setTimeout(() => {
+        resetTest();
+      }, 2000);
+    }
+    
+    function resetTest() {
+      testStarted = false;
+      button.classList.remove('waiting', 'active', 'success');
+      button.textContent = 'START';
+      instructionText.textContent = 'Click the button to start the test!';
+    }
+  </script>
+</body>
+</html>

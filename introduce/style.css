@@ -1,0 +1,101 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: "Noto Sans KR", Arial, sans-serif;
+    scroll-behavior: smooth;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* 공통 섹션 스타일 */
+section {
+    min-height: 50vh;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    border-radius: 10px;
+}
+
+
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    border-radius: 10px;
+
+}
+
+
+.hover1:hover {
+    transform: translateY(-10px);
+}
+
+.hover1 {
+    /* background-color: red; */
+    transition: all 0.2s;
+}
+/* 네비게이션 */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #333;
+    padding: 1rem 0;
+    z-index: 100;
+}
+
+
+/* 섹션별 스타일 */
+#intro {
+    background-color: #eee;
+}
+
+#personality {
+    background-color: #ddd;
+}
+
+#future {
+    background-color: #ccc;
+}
+
+/* 텍스트 스타일 */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #222;
+}
+
+h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #444;
+    border-bottom: 2px solid #888;
+    padding-bottom: 0.5rem;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.highlight {
+    font-weight: bold;
+    color: #555;
+}
+
+
+#button {
+    background-color: blue;
+    width: 200px;
+    height: 70px;
+
+    
+}
