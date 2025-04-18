@@ -1,53 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reaction Speed Test</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-color: #f0f0f0;
-    }
-    .container {
-      text-align: center;
-    }
-    #reactionButton {
-      width: 200px;
-      height: 200px;
-      border-radius: 50%;
-      border: none;
-      background-color: red;
-      color: white;
-      font-size: 20px;
-      cursor: pointer;
-      margin: 20px;
-      transition: background-color 0.1s;
-      position: relative;
-    }
-    #reactionButton.waiting {
-      background-color: grey;
-    }
-    #reactionButton.active {
-      background-color: red;
-    }
-    #reactionButton.success {
-      background-color: green;
-    }
-    #resultText {
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
-    #instructionText {
-      font-size: 18px;
-      margin-bottom: 20px;
-    }
-  </style>
 </head>
 <body>
   <div class="container">
