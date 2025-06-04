@@ -163,6 +163,23 @@
         displayHTML.textContent = displayText;
         });
 
+
+
+
+        // Number buttons logic
+        const numberButtons = document.querySelectorAll('.button:not([id])');
+
+        numberButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            displayText += btn.textContent;
+            displayHTML.textContent = displayText;
+        });
+        });
+
+
+
+
+
         equal.addEventListener('click', () => {
         try {
             // Replace symbols for eval
