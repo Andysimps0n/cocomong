@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+
+        body {
+            margin: 0;
+        }
+
+        
+        .outer-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+        }
+
+
+        .calculator-container {
+            width: 25%;
+            height: 80%;
+
+            border-radius: 30px;
+            background: #1e2b4b;
+
+            box-shadow: 0px 3px 10px 5px rgba(0,0,0,0.2);
+
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+
+        .calculator-grid {
+            display: grid;
+            width: 100%;
+            height: 100%;
+
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(7, 1fr);
+            gap: 10px;
+        }
+
+
+        .display-container {
+            grid-column: span 3;
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #display {
+            width: 100%;
+            height: 70%;
+            background: #e1eaff;
+
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 40px;
+
+        }
+
+
+        .button {
+            height: 100%;
+            width: 100%;
+
+            margin: 0 auto;
+            background-color: #182848;
+
+            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+
+            font-size: 20px;
+        }
+
+    </style>
+
+
+
+    <div class="outer-container">
+        <div class="calculator-container">
+            <div class="calculator-grid">
+
+
+                <div class="display-container">
+                    <div id="display"></div>
+                </div>
+                
+                <div class="button">1</div>
+                <div class="button">2</div>
+                <div class="button">3</div>
+                <div class="button">4</div>
+                <div class="button">5</div>
+                <div class="button">6</div>
+                <div class="button">7</div>
+                <div class="button">8</div>
+                <div class="button">9</div>
+                <div class="button">0</div>
+                <div class="button" id="add">+</div>
+                <div class="button" id="subtract">-</div>
+                <div class="button" id="multiply">×</div>
+                <div class="button" id="divide">÷</div>
+                <div class="button" id="equal">=</div>
+                <div class="button" id="answer-clear">AC</div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+
+        // Button Declaring
+        const add = document.getElementById('add');
+        const subtract = document.getElementById('subtract');
+        const multiply = document.getElementById('multiply');
+        const divide = document.getElementById('divide');
+        const equal = document.getElementById('equal');
+        const clear = document.getElementById('answer-clear');
+        const displayHTML = document.getElementById('display')
+        
+        let displayText = displayHTML.textContent
+
+
+        // Button Logics
+        add.addEventListener('click', () => {
+        displayText += " +";
+        displayHTML.textContent = displayText;
+        });
+
+        subtract.addEventListener('click', () => {
+        displayText += " -";
+        displayHTML.textContent = displayText;
+        });
+
+        multiply.addEventListener('click', () => {
+        displayText += " ×";
+        displayHTML.textContent = displayText;
+        });
+
+        divide.addEventListener('click', () => {
+        displayText += " ÷";
+        displayHTML.textContent = displayText;
+        });
+
+        equal.addEventListener('click', () => {
+        try {
+            // Replace symbols for eval
+            const result = eval(displayText.replace(/×/g, '*').replace(/÷/g, '/'));
+            displayText = result;
+            displayHTML.textContent = result;
+        } catch {
+            displayHTML.textContent = "Error";
+        }
+        });
+
+        clear.addEventListener('click', () => {
+        displayText = "";
+        displayHTML.textContent = "";
+        });
+
+
+
+
+
+
+    </script>
+</body>
+</html>
